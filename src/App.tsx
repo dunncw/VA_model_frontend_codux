@@ -1,25 +1,26 @@
-import logo from './assets/logo.svg';
+// src/App.tsx
+import React from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import HomePage from './pages/HomePage';
+import EmployeeDetails from './pages/EmployeeDetails/EmployeeDetails';
 import styles from './App.module.scss';
 
-function App() {
-    return (
-        <div className={styles.App}>
-            <header className={styles['App-header']}>
-                <img src={logo} className={styles['App-logo']} alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className={styles['App-link']}
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
-    );
-}
+const App: React.FC = () => {
+  console.log(Routes); // log the Routes object to the console
+  return (
+    <Router basename="/">
+      <div className={styles.app}>
+        <Navbar />
+        <main className={styles.main}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/employee-details/:id" element={<EmployeeDetails />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  );
+};
 
 export default App;

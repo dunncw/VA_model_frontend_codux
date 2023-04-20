@@ -1,0 +1,27 @@
+// Navbar.module.scss
+@import '../../index.scss';
+
+.navbar {
+  background-color: $navbar-background-color;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $navbar-text-color;
+
+  .brand {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+
+    .brand {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.employeeRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  flex-grow: 1;
+}
+
+
+.employeeRow div {
+  display: table-cell;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.employeeRow:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .employeeRow {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  .employeeRow div {
+    border: none;
+    padding: 0.25rem 0;
+  }
+}

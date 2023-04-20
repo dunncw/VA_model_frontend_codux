@@ -1,15 +1,20 @@
-.App {
-  text-align: center;
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media screen and (max-width: 768px) {
+  .main {
+    flex-direction: row;
   }
 }
 
