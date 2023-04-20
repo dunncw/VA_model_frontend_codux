@@ -10,7 +10,7 @@ const Chart: React.FC<ChartProps> = ({ title }) => {
   return (
     <div className={styles.chart}>
       <div className={styles.title}>{title}</div>
-      <div className={styles.dummyChart} style={{ width: '100%', height: '200px', backgroundColor: '#e0e0e0' }}>
+      <div className={styles.dummyChart} style={{ width: '100%', height: '300px', backgroundColor: '#e0e0e0' }}>
         {/* Add your chart implementation here */}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './EmployeeDetails.module.scss';
-import { Card, Button } from '@mui/material';
+import { Card, Button, Grid, Typography, CardContent, CardHeader } from '@mui/material';
 
 interface Employee {
   id: number;
@@ -59,37 +59,60 @@ const EmployeeDetails: React.FC = () => {
 
   return (
     <div className={styles.employeeDetails}>
-      <div className={styles.header}>
-  <div>
-    <Button onClick={handleGoBack}>Back</Button>
-  </div>
-  <div>
-    <h1>{`Employee ${employee.id}: ${employee.name}`}</h1>
-  </div>
-  <div></div>
-</div>
-      <div className={styles.cardContainer}>
-      <Card className={styles.card}>
-        <h2 className={styles.cardHeader}>Employee Profile</h2>
-        <p>Name: {employee.name}</p>
-        <p>Department: {employee.department}</p>
-        <p>Job Title: {employee.jobTitle}</p>
-        <p>Address: {employee.address.street}, {employee.address.city}, {employee.address.state} {employee.address.zip}, {employee.address.country}</p>
-      </Card>
+      <Grid container justifyContent="space-between" alignItems="center" className={styles.header}>
+        <Grid item>
+          <Button onClick={handleGoBack}>Back</Button>
+        </Grid>
+        <Grid item>
+          <Typography variant="h4" component="h1">{`Employee ${employee.id}: ${employee.name}`}</Typography>
+        </Grid>
+      </Grid>
 
-        <Card className={styles.card} title="Risk Score Breakdown">
-          {/* Add risk score breakdown chart or table */}
-        </Card>
-        <Card className={styles.card} title="Eligible Resources">
-          {/* Add eligible resources list or table */}
-        </Card>
-        <Card className={styles.card} title="Notes and Communication">
-          {/* Add notes and communication interface */}
-        </Card>
-        <Card className={styles.card} title="Historical Lookback">
-          {/* Add historical lookback chart or table */}
-        </Card>
-      </div>
+      <Grid container spacing={2} className={styles.cardContainer}>
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardHeader title="Employee Profile" />
+            <CardContent>
+              <Typography>Name: {employee.name}</Typography>
+              <Typography>Department: {employee.department}</Typography>
+              <Typography>Job Title: {employee.jobTitle}</Typography>
+              <Typography>Address: {employee.address.street}, {employee.address.city}, {employee.address.state} {employee.address.zip}, {employee.address.country}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardHeader title="Risk Score Breakdown" />
+            <CardContent>
+              {/* Add risk score breakdown chart or table */}
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardHeader title="Eligible Resources" />
+            <CardContent>
+              {/* Add eligible resources list or table */}
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardHeader title="Notes and Communication" />
+            <CardContent>
+              {/* Add notes and communication interface */}
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardHeader title="Historical Lookback" />
+            <CardContent>
+              {/* Add historical lookback chart or table */}
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 };

@@ -3,5 +3,8 @@ import Dashboard from '../../../pages/Dashboard/Dashboard';
 
 export default createBoard({
     name: 'Dashboard',
-    Board: () => <Dashboard />
+    Board: () => <Dashboard />,
+    environmentProps: {
+        canvasWidth: 857,
+    },
 });
