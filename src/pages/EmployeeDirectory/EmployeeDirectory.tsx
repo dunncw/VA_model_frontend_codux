@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, TableSortLabel } from '@mui/material';
+import { Container, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, TableSortLabel, TablePagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './EmployeeDirectory.module.scss';
 
@@ -20,6 +20,18 @@ const EmployeeDirectory: React.FC = () => {
   const [sortColumn, setSortColumn] = useState('id');
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
   const navigate = useNavigate();
+
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   useEffect(() => {
     const fetchedEmployees: Employee[] = [
@@ -58,6 +70,70 @@ const EmployeeDirectory: React.FC = () => {
       {
         id: 5,
         name: 'Joe Smith',
+        department: 'Engineering',
+        jobTitle: 'Software Engineer',
+        riskScore: 75,
+        lastOutreachDate: '2023-03-10',
+      },
+      {
+        id: 6,
+        name: 'Jane Doe',
+        department: 'Marketing',
+        jobTitle: 'Marketing Manager',
+        riskScore: 60,
+        lastOutreachDate: '2023-02-15',
+      },
+      {
+        id: 7,
+        name: 'Bob Johnson',
+        department: 'Sales',
+        jobTitle: 'Sales Manager',
+        riskScore: 80,
+        lastOutreachDate: '2023-01-01',
+      },
+      {
+        id: 8,
+        name: 'Sally Jones',
+        department: 'Engineering',
+        jobTitle: 'Software Engineer',
+        riskScore: 90,
+        lastOutreachDate: '2023-03-10',
+      },
+      {
+        id: 9,
+        name: 'Joe Doe',
+        department: 'Engineering',
+        jobTitle: 'Software Engineer',
+        riskScore: 75,
+        lastOutreachDate: '2023-03-10',
+      },
+      {
+        id: 10,
+        name: 'Jane Johnson',
+        department: 'Marketing',
+        jobTitle: 'Marketing Manager',
+        riskScore: 60,
+        lastOutreachDate: '2023-02-15',
+      },
+      {
+        id: 11,
+        name: 'Bob Smith',
+        department: 'Sales',
+        jobTitle: 'Sales Manager',
+        riskScore: 80,
+        lastOutreachDate: '2023-01-01',
+      },
+      {
+        id: 12,
+        name: 'Sally Smith',
+        department: 'Engineering',
+        jobTitle: 'Software Engineer',
+        riskScore: 90,
+        lastOutreachDate: '2023-03-10',
+      },
+      {
+        id: 13,
+        name: 'Joe Jones',
         department: 'Engineering',
         jobTitle: 'Software Engineer',
         riskScore: 75,
@@ -102,6 +178,8 @@ const EmployeeDirectory: React.FC = () => {
       return sortOrder === 'asc' ? (valueA as number) - (valueB as number) : (valueB as number) - (valueA as number);
     }
   });
+
+  const paginatedEmployees = sortedEmployees.slice(page * rowsPerPage, (page * rowsPerPage) + rowsPerPage);
   
 
   return (
@@ -120,8 +198,9 @@ const EmployeeDirectory: React.FC = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <TableContainer component={Paper}>
-        <Table>
+      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {[
@@ -155,12 +234,11 @@ const EmployeeDirectory: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {sortedEmployees.map((employee) => (
+            {paginatedEmployees.map((employee) => (
               <TableRow
                 key={employee.id}
                 onClick={() => handleRowClick(employee.id)}
-                style={{ cursor: 'pointer' }}
-              >
+                style={{ cursor: 'pointer' }}>
                 <TableCell>{employee.id}</TableCell>
                 <TableCell>{employee.name}</TableCell>
                 <TableCell>{employee.department}</TableCell>
@@ -170,8 +248,18 @@ const EmployeeDirectory: React.FC = () => {
               </TableRow>
             ))}
           </TableBody>
-        </Table>
-      </TableContainer>
+          </Table>
+        </TableContainer>
+        <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={sortedEmployees.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+      </Paper>
     </Container>
   );
 };

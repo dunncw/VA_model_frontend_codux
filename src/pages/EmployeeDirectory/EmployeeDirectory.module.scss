@@ -6,21 +6,15 @@
 
 .title {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .searchBar {
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-.table {
-  min-width: 650px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
 }
 
 .table th {
   font-weight: bold;
-}
-
-.table tr:hover {
-  background-color: rgba(0, 0, 0, 0.05);
 }
