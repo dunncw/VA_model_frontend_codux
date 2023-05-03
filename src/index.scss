@@ -7,7 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: $background-color;
   color: $text-color;
+  overflow-x: hidden; // Add this line to prevent horizontal scrolling if the content overflows the viewport width
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './EmployeeDetails.module.scss';
 import { Card, Button, Grid, Typography, CardContent, CardHeader } from '@mui/material';
+import Chart from '../../components/Chart/Chart';
 
 interface Employee {
   id: number;
@@ -61,13 +62,14 @@ const EmployeeDetails: React.FC = () => {
     <div className={styles.employeeDetails}>
       <Grid container justifyContent="space-between" alignItems="center" className={styles.header}>
         <Grid item>
-          <Button onClick={handleGoBack}>Back</Button>
+          <Button onClick={handleGoBack} >Back</Button>
         </Grid>
         <Grid item>
           <Typography variant="h4" component="h1">{`Employee ${employee.id}: ${employee.name}`}</Typography>
         </Grid>
+        <Grid item />
       </Grid>
-
+  
       <Grid container spacing={2} className={styles.cardContainer}>
         <Grid item xs={12} md={6}>
           <Card>
@@ -84,7 +86,20 @@ const EmployeeDetails: React.FC = () => {
           <Card>
             <CardHeader title="Risk Score Breakdown" />
             <CardContent>
-              {/* Add risk score breakdown chart or table */}
+              <Typography>Overall Risk Score: 0.5</Typography>
+              <Typography>Department Risk Score: 0.5</Typography>
+              <Typography>Job Title Risk Score: 0.5</Typography>
+              <Typography>Address Risk Score: 0.5</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={12}>
+          <Card>
+            <CardHeader title="Historical Lookback" />
+            <CardContent>
+              {/* place a dummy image here */}
+              <Chart title='' />
+              <Typography>Legend</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -92,7 +107,9 @@ const EmployeeDetails: React.FC = () => {
           <Card>
             <CardHeader title="Eligible Resources" />
             <CardContent>
-              {/* Add eligible resources list or table */}
+              <Typography>Resource 1</Typography>
+              <Typography>Resource 2</Typography>
+              <Typography>Resource 3</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -100,15 +117,9 @@ const EmployeeDetails: React.FC = () => {
           <Card>
             <CardHeader title="Notes and Communication" />
             <CardContent>
-              {/* Add notes and communication interface */}
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card>
-            <CardHeader title="Historical Lookback" />
-            <CardContent>
-              {/* Add historical lookback chart or table */}
+              <Typography>Notes 1</Typography>
+              <Typography>Notes 2</Typography>
+              <Typography>Notes 3</Typography>
             </CardContent>
           </Card>
         </Grid>

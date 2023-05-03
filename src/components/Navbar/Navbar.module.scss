@@ -1,13 +1,16 @@
 // Navbar.module.scss
 @import '../../index.scss';
 
+// 
+
+
 .navbar {
-  background-color: $navbar-background-color;
+  background-color: $blue-background-color;
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: $navbar-text-color;
+  color: $white-text-color;
 
   .brand {
     font-size: 1.5rem;
@@ -24,4 +27,10 @@
       margin-bottom: 0.5rem;
     }
   }
+}
+
+.logo {
+  padding-left: 16px; // Adjust the padding as needed
+  width: 20vw; // Adjust the width as needed, using viewport units
+  height: 5vw; // Maintain the aspect ratio
 }

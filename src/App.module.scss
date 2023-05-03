@@ -9,14 +9,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+
+  width: 100%; // Add this to ensure the main content takes the full available width
 }
 
 @media screen and (max-width: 768px) {
   .main {
-    flex-direction: row;
+    flex-direction: column; // Change this to column for smaller screens, so the content stacks vertically
   }
 }
+
+
 
 .App-header {
   background-color: #282c34;

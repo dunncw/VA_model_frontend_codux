@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
 
 
   return (
-    <Container maxWidth="lg" className={styles.dashboard}>
+    <Container maxWidth="lg" className={styles.dashboard}> 
       <Typography variant="h4" component="h1" className={styles.title}>Dashboard</Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={4}>

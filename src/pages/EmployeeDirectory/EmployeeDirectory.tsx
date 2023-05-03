@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, TableSortLabel, TablePagination } from '@mui/material';
+import { Container, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, TableSortLabel, TablePagination, Box  } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styles from './EmployeeDirectory.module.scss';
 
@@ -198,8 +198,8 @@ const EmployeeDirectory: React.FC = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
+      <Paper >
+        <TableContainer>
           <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
