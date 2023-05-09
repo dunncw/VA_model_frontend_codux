@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, PureComponent } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './EmployeeDetails.module.scss';
 import { Card, Button, Grid, Typography, CardContent, CardHeader } from '@mui/material';
-import Chart from '../../components/Chart/Chart';
+import Chart from '../../components/Chart/Chart_2';
+import RadarChart from '../../components/RadarChart/RadarChart';
+import Chart_2 from '../../components/Chart/Chart_2';
 
 interface Employee {
   id: number;
@@ -28,6 +30,22 @@ const EmployeeDetails: React.FC = () => {
   const [employee, setEmployee] = useState<Employee | null>(null);
   const { id } = useParams<RouteParams>();
   const navigate = useNavigate();
+
+  const radarChartData = [
+    { subject: 'Financial Problems', score: 65, fullMark: 100 },
+    { subject: 'Substance Problems', score: 75, fullMark: 100 },
+    { subject: 'Legal Problems', score: 85, fullMark: 100 },
+    { subject: 'Relationship Issues', score: 95, fullMark: 100 },
+    { subject: 'Lack of Connectedness', score: 50, fullMark: 100 },
+  ];
+
+  const dummyData = [
+    { date: new Date(2023, 0, 1).getTime(), population: 100, atRisk: 38 },
+    { date: new Date(2023, 1, 1).getTime(), population: 110, atRisk: 35 },
+    { date: new Date(2023, 2, 1).getTime(), population: 120, atRisk: 32 },
+    { date: new Date(2023, 3, 1).getTime(), population: 130, atRisk: 36 },
+    { date: new Date(2023, 4, 1).getTime(), population: 140, atRisk: 36 },
+  ];
 
   useEffect(() => {
     if (id) {
@@ -71,7 +89,7 @@ const EmployeeDetails: React.FC = () => {
       </Grid>
   
       <Grid container spacing={2} className={styles.cardContainer}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
           <Card>
             <CardHeader title="Employee Profile" />
             <CardContent>
@@ -82,14 +100,15 @@ const EmployeeDetails: React.FC = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={8}>
           <Card>
             <CardHeader title="Risk Score Breakdown" />
             <CardContent>
-              <Typography>Overall Risk Score: 0.5</Typography>
-              <Typography>Department Risk Score: 0.5</Typography>
-              <Typography>Job Title Risk Score: 0.5</Typography>
-              <Typography>Address Risk Score: 0.5</Typography>
+              {/* i want to add a number right blew and centered from the radar chart that is the agregate risk score */}
+              {/* center the text  */}
+              <Typography>Aggregate Risk Score: <b>7.5</b></Typography>
+              <RadarChart data={radarChartData} />
+
             </CardContent>
           </Card>
         </Grid>
@@ -98,7 +117,12 @@ const EmployeeDetails: React.FC = () => {
             <CardHeader title="Historical Lookback" />
             <CardContent>
               {/* place a dummy image here */}
-              <Chart title='' />
+              <Chart_2 
+                title=""
+                data={dummyData}
+                dataKeys={['populationAtRisk']}
+                colors={['#8884d8']}
+              />
               <Typography>Legend</Typography>
             </CardContent>
           </Card>
