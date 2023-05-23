@@ -12,8 +12,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
 
-const pages = ['Dashboard', 'Employee Directory', 'CF Website'];
+const pages = [
+  { name: 'Dashboard', link: '/' },
+  { name: 'Employee Directory', link: '/employee-directory' },
+  { name: 'CF Website', link: 'https://www.clearforce.com/' },
+];
 const settings = ['Profile', 'Settings', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -38,10 +43,15 @@ function ResponsiveAppBar() {
   return (
     <AppBar position="static" sx={{
       backgroundColor: '#132033', // Set the background color to match your app's theme
+      maxHeight: '300px',
+      // give it a border color and shadow
+      borderBottom: '1px solid #132033',
     }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg"  className={styles.container}>
         <Toolbar disableGutters>
-          <CfLogo className={styles.logo} />
+          <Link to="/">
+            <CfLogo className={styles.logo} />
+          </Link>
           {/* create a little spacing between logo and items it should not be super large  */}
           <Box sx={{ flexGrow: 0.1 }} />
 
@@ -74,21 +84,24 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Link to={page.link}>
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+              <Link to={page.link} key={page.name}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block', textDecoration: 'none' }}
+                >
+                  {page.name}
+                </Button>
+              </Link>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
@@ -97,28 +110,6 @@ function ResponsiveAppBar() {
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
           </Box>
         </Toolbar>
       </Container>

@@ -2,7 +2,7 @@ import React from 'react';
 import SummaryCard from '../../components/SummaryCard/SummaryCard';
 import Chart from '../../components/Chart/Chart';
 import styles from './Dashboard.module.scss';
-import { Grid, Typography, Container } from '@mui/material';
+import { Grid, Typography, Container, Card, CardContent, CardHeader } from '@mui/material';
 
 const Dashboard: React.FC = () => {
   // Replace these dummy values with real data fetched from your backend
@@ -24,7 +24,7 @@ const Dashboard: React.FC = () => {
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={4}>
-          <Grid container spacing={2} direction="column" className={styles.summaryCards} >
+          <Grid container spacing={2} direction="column" className={styles.summaryCards}  >
             <Grid item>
               <SummaryCard title="Total Employees" value={totalEmployees} />
             </Grid>

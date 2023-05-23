@@ -51,7 +51,7 @@ class Chart extends PureComponent<ChartProps> {
               <Tooltip />
               <Legend />
               <Line type="monotone" dataKey="population" stroke="#8884d8" activeDot={{ r: 8 }} />
-              <Line type="monotone" dataKey="atRisk" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="atRisk" stroke="	#880808" />
             </LineChart>
           </ResponsiveContainer>
         </div>

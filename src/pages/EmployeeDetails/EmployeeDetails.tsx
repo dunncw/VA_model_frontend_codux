@@ -1,7 +1,7 @@
 import React, { useState, useEffect, PureComponent } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './EmployeeDetails.module.scss';
-import { Card, Button, Grid, Typography, CardContent, CardHeader } from '@mui/material';
+import { Card, Button, Grid, Typography, CardContent, CardHeader, Container } from '@mui/material';
 import Chart from '../../components/Chart/Chart_2';
 import RadarChart from '../../components/RadarChart/RadarChart';
 import Chart_2 from '../../components/Chart/Chart_2';
@@ -27,6 +27,10 @@ type RouteParams = {
 };
 
 const EmployeeDetails: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page when the component mounts
+  }, []);
+
   const [employee, setEmployee] = useState<Employee | null>(null);
   const { id } = useParams<RouteParams>();
   const navigate = useNavigate();
@@ -77,78 +81,80 @@ const EmployeeDetails: React.FC = () => {
   }
 
   return (
-    <div className={styles.employeeDetails}>
-      <Grid container justifyContent="space-between" alignItems="center" className={styles.header}>
-        <Grid item>
-          <Button onClick={handleGoBack} >Back</Button>
-        </Grid>
-        <Grid item>
-          <Typography variant="h4" component="h1">{`Employee ${employee.id}: ${employee.name}`}</Typography>
-        </Grid>
-        <Grid item />
-      </Grid>
-  
-      <Grid container spacing={2} className={styles.cardContainer}>
-        <Grid item xs={12} md={4}>
-          <Card>
-            <CardHeader title="Employee Profile" />
-            <CardContent>
-              <Typography>Name: {employee.name}</Typography>
-              <Typography>Department: {employee.department}</Typography>
-              <Typography>Job Title: {employee.jobTitle}</Typography>
-              <Typography>Address: {employee.address.street}, {employee.address.city}, {employee.address.state} {employee.address.zip}, {employee.address.country}</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Card>
-            <CardHeader title="Risk Score Breakdown" />
-            <CardContent>
-              {/* i want to add a number right blew and centered from the radar chart that is the agregate risk score */}
-              {/* center the text  */}
-              <Typography>Aggregate Risk Score: <b>7.5</b></Typography>
-              <RadarChart data={radarChartData} />
+    <div  className={styles.employeeDetails}>
+    <Container maxWidth="lg" className={styles.dashboard}>
+  <Grid container justifyContent="space-between" alignItems="center" className={styles.header}>
+    <Grid item>
+      <Button onClick={handleGoBack} >Back</Button>
+    </Grid>
+    <Grid item>
+      <Typography variant="h4" component="h1">{`Employee ${employee.id}: ${employee.name}`}</Typography>
+    </Grid>
+    <Grid item />
+  </Grid>
 
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={12}>
-          <Card>
-            <CardHeader title="Historical Lookback" />
-            <CardContent>
-              {/* place a dummy image here */}
-              <Chart_2 
-                title=""
-                data={dummyData}
-                dataKeys={['populationAtRisk']}
-                colors={['#8884d8']}
-              />
-              <Typography>Legend</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card>
-            <CardHeader title="Eligible Resources" />
-            <CardContent>
-              <Typography>Resource 1</Typography>
-              <Typography>Resource 2</Typography>
-              <Typography>Resource 3</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card>
-            <CardHeader title="Notes and Communication" />
-            <CardContent>
-              <Typography>Notes 1</Typography>
-              <Typography>Notes 2</Typography>
-              <Typography>Notes 3</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-    </div>
+  <Grid container spacing={2} className={styles.cardContainer}>
+    <Grid item xs={12} md={4}>
+      <Card className={styles.card}>
+        <CardHeader title="Employee Profile" />
+        <CardContent>
+          <Typography>Name: {employee.name}</Typography>
+          <Typography>Department: {employee.department}</Typography>
+          <Typography>Job Title: {employee.jobTitle}</Typography>
+          <Typography>Address: {employee.address.street}, {employee.address.city}, {employee.address.state} {employee.address.zip}, {employee.address.country}</Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+    <Grid item xs={12} md={8}>
+      <Card className={styles.card}>
+        <CardHeader title="Risk Score Breakdown" />
+        <CardContent>
+          {/* i want to add a number right blew and centered from the radar chart that is the agregate risk score */}
+          {/* center the text  */}
+          <Typography>Aggregate Risk Score: <b>7.5</b></Typography>
+          <RadarChart data={radarChartData} />
+
+        </CardContent>
+      </Card>
+    </Grid>
+    <Grid item xs={12} md={12}>
+      <Card className={styles.card} >{/* elevation={0} */}
+        <CardHeader title="Historical Lookback" />
+        <CardContent>
+          {/* place a dummy image here */}
+          <Chart_2 
+            title=""
+            data={dummyData}
+            dataKeys={['populationAtRisk']}
+            colors={['#8884d8']}
+          />
+          <Typography>Legend</Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+    <Grid item xs={12} md={6}>
+      <Card className={styles.card}>
+        <CardHeader title="Eligible Resources" />
+        <CardContent>
+          <Typography>Resource 1</Typography>
+          <Typography>Resource 2</Typography>
+          <Typography>Resource 3</Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+    <Grid item xs={12} md={6}>
+      <Card className={styles.card}>
+        <CardHeader title="Notes and Communication" />
+        <CardContent>
+          <Typography>Notes 1</Typography>
+          <Typography>Notes 2</Typography>
+          <Typography>Notes 3</Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+  </Grid>
+</Container>
+</div>
   );
 };
 

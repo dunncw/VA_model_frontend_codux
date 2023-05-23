@@ -17,20 +17,24 @@
   }
 }
 
-@media screen and (max-width: 767px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-
-    .brand {
-      margin-bottom: 0.5rem;
-    }
-  }
-}
-
 .logo {
   padding-left: 16px; // Adjust the padding as needed
-  width: 20vw; // Adjust the width as needed, using viewport units
+  width: 18vw; // Adjust the width as needed, using viewport units
   height: 5vw; // Maintain the aspect ratio
+  //set the max width and height
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.external-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
 }
