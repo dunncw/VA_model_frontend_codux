@@ -17,7 +17,6 @@ import { Link, useNavigate } from 'react-router-dom';
 const pages = [
   { name: 'Dashboard', link: '/' },
   { name: 'Employee Directory', link: '/employee-directory' },
-  { name: 'CF Website', link: 'https://www.clearforce.com/' },
 ];
 const settings = ['Profile', 'Settings', 'Logout'];
 
@@ -54,8 +53,8 @@ function ResponsiveAppBar() {
     }}>
       <Container maxWidth="lg"  className={styles.container}>
         <Toolbar disableGutters>
-          <Link to="/">
-            <CfLogo className={styles.logo} />
+          <Link to="https://www.clearforce.com/" target="_blank" rel="noopener noreferrer">
+           <CfLogo className={styles.logo} />
           </Link>
           <Box sx={{ flexGrow: 0.1 }} />
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
