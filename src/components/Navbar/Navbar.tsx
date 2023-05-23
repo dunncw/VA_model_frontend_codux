@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Navbar.module.scss';
-import { ReactComponent as CfLogo } from '../../assets/cf_logo.svg'; // Adjust the path if necessary
+import { ReactComponent as CfLogo } from '../../assets/cf_logo.svg';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const pages = [
   { name: 'Dashboard', link: '/' },
@@ -24,6 +24,7 @@ const settings = ['Profile', 'Settings', 'Logout'];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -36,15 +37,19 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (pageName: string) => {
     setAnchorElUser(null);
+    if (pageName === 'Profile') {
+      navigate('/profile');
+    } else if (pageName === 'Settings') {
+      navigate('/settings');
+    }
   };
 
   return (
     <AppBar position="static" sx={{
-      backgroundColor: '#132033', // Set the background color to match your app's theme
+      backgroundColor: '#132033',
       maxHeight: '300px',
-      // give it a border color and shadow
       borderBottom: '1px solid #132033',
     }}>
       <Container maxWidth="lg"  className={styles.container}>
@@ -52,9 +57,7 @@ function ResponsiveAppBar() {
           <Link to="/">
             <CfLogo className={styles.logo} />
           </Link>
-          {/* create a little spacing between logo and items it should not be super large  */}
           <Box sx={{ flexGrow: 0.1 }} />
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -90,6 +93,12 @@ function ResponsiveAppBar() {
                   </Link>
                 </MenuItem>
               ))}
+              <MenuItem onClick={() => handleCloseUserMenu('Profile')}>
+                <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => handleCloseUserMenu('Settings')}>
+                <Typography textAlign="center">Settings</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -110,10 +119,33 @@ function ResponsiveAppBar() {
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={() => handleCloseUserMenu('')}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;
