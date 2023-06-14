@@ -16,7 +16,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const pages = [
   { name: 'Dashboard', link: '/' },
-  { name: 'Employee Directory', link: '/employee-directory' },
+  { name: 'Veteran Directory', link: '/employee-directory' },
 ];
 const settings = ['Profile', 'Settings', 'Logout'];
 

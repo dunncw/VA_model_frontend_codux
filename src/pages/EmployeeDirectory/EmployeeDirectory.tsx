@@ -189,7 +189,7 @@ const EmployeeDirectory: React.FC = () => {
         component="h1"
         className={styles.title}
       >
-        Employee Directory
+        Veteran Directory
       </Typography>
       <TextField
         label="Search"

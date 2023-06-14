@@ -26,10 +26,10 @@ const Dashboard: React.FC = () => {
         <Grid item xs={12} sm={4}>
           <Grid container spacing={2} direction="column" className={styles.summaryCards}  >
             <Grid item>
-              <SummaryCard title="Total Employees" value={totalEmployees} />
+              <SummaryCard title="Total Veterans" value={totalEmployees} />
             </Grid>
             <Grid item>
-              <SummaryCard title="Employees at Risk" value={employeesAtRisk} />
+              <SummaryCard title="Veterans at Risk" value={employeesAtRisk} />
             </Grid>
             <Grid item>
               <SummaryCard title="Resources Allocated" value={resourcesAllocated} />

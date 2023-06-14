@@ -88,7 +88,7 @@ const EmployeeDetails: React.FC = () => {
       <Button onClick={handleGoBack} >Back</Button>
     </Grid>
     <Grid item>
-      <Typography variant="h4" component="h1">{`Employee ${employee.id}: ${employee.name}`}</Typography>
+      <Typography variant="h4" component="h1">{`Veteran ${employee.id}: ${employee.name}`}</Typography>
     </Grid>
     <Grid item />
   </Grid>
@@ -96,7 +96,7 @@ const EmployeeDetails: React.FC = () => {
   <Grid container spacing={2} className={styles.cardContainer}>
     <Grid item xs={12} md={4}>
       <Card className={styles.card}>
-        <CardHeader title="Employee Profile" />
+        <CardHeader title="Veteran Profile" />
         <CardContent>
           <Typography>Name: {employee.name}</Typography>
           <Typography>Department: {employee.department}</Typography>
